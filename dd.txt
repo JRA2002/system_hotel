@@ -1,0 +1,25 @@
+from typing import Any
+from .models import Room
+import datetime
+from datetime import timedelta
+
+class DateRangeFilter:
+    pass
+
+def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        print(request)
+        response = self.get_response(request)
+        return response
+    
+    def process_view(self, request, view_func, view_args, view_kargs):
+        if request:
+            date_today = datetime.date.today()
+            rooms = Room.objects.filter(avaliable=True)
+            for room in rooms:
+                room.check_in + timedelta(days=7)
+                if date_today > room.check_in:
+                    room.avaliable = False
+                    room.save()

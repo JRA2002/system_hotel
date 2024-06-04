@@ -3,7 +3,7 @@ from django.views.generic import TemplateView,ListView,DetailView, UpdateView, F
 from .models import Room, Reservation, Customer
 from django.urls import reverse_lazy
 from datetime import datetime
-from . forms import ReservationForm
+from . forms import ReservationForm, ReservationFormWOM
 
 def home(request):
     if request.method == 'GET':
@@ -50,7 +50,7 @@ def make_res(request):
 
 class HomeView(FormView):
     template_name = 'principal/home.html'  
-    form_class =  ReservationForm
+    form_class =  ReservationFormWOM
     success_url = 'principal/results.html'     
 
     def form_valid(self, form):

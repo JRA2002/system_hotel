@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<h1>WELCOME TO </h1>
+<div class="d-grid gap-3 col-md-4 mx-auto">
+    <h1>WELCOME TO </h1>
 <h1>Luxury Hotel</h1>
 <form method="get" action="{% url 'results' %}">
-    {{ csrf_token }}
-    {{ form|crispy }}
+    <div class="form-group col-md-5">
+        {{ csrf_token }}
+        {{ form|crispy }}
+    </div>
+ 
     <input type="submit" class="btn btn-primary" value="Search">
 </form>
 
+</div>
 
 {% endblock %}

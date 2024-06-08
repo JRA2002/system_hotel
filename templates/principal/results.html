@@ -1,17 +1,22 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<div class="d-grid gap-2 col-md-4 mx-auto">
-    <h1>RESULTS OF SEARCH</h1>
+
+<div class="d-grid gap-2 col-md-4 mx-auto text-white">
+    <h1 class="text-white">RESULTS OF SEARCH</h1>
 {% for room in available_rooms %}
-    <h2>{{room.id}}</h2>
+    <h2 >{{room.id}}</h2>
     <h2>{{room.num_room}}</h2>
     <h2>{{room.type_room}}</h2>
     <h2>{{room.price}}</h2>
     <h2>{{room.available}}</h2>
     <h2>{{room.num_days}}</h2>
+    <div class="card mt-3">
+        <img class="img thumbnail" src="{{room.image.url}}" class="card-img-top img-fluid" alt="imagen " />
+    </div>
+    
     <h2>TOTAL PRICE : {{room.total_price}}</h2>
-    <a><a class="btn btn-primary" href="#">RESERVE</a>
+    <a class="btn btn-primary" href="{% url 'detail_customer' %}">RESERVE</a>
 {% endfor %}
 </div>
 {% endblock %}

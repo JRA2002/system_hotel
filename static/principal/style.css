@@ -1,0 +1,10 @@
+body {
+    background-image: url('https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/900/450/75/dam/wdpro-assets/dlr/places-to-stay/disneyland-hotel/resort-overview/disneyland-hotel-06.jpg?1717673719763');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.text-white {
+    color: white;
+}

@@ -18,6 +18,7 @@ class Room(models.Model):
     type_room = models.CharField(choices=TYPES_ROOM, max_length=10, default=0)
     price = models.PositiveIntegerField()
     available = models.BooleanField(default=True)
+    image = models.ImageField(upload_to='principal/room',default='principal/room/default.jpeg')
 
     def __str__(self):
         return self.type_room

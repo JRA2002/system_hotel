@@ -3,7 +3,7 @@ from django.views.generic import TemplateView,ListView,DetailView, UpdateView, F
 from .models import Room, Reservation, Customer
 from django.urls import reverse_lazy
 from datetime import datetime
-from . forms import ReservationForm, ReservationFormWOM
+from . forms import ReservationForm, CustomerForm
 
 def home(request):
     if request.method == 'GET':
@@ -28,7 +28,7 @@ def search_results(request):
         available_rooms = available_rooms.exclude(id__in=booked_rooms)
         print(available_rooms)
         available_rooms_list = [
-            {'num_room': room.num_room, 'type_room': room.type_room, 'price': room.price,'num_days':num_days, 'available': room.available, 
+            {'num_room': room.num_room, 'type_room': room.type_room, 'price': room.price,'num_days':num_days,'image':room.image, 'available': room.available, 
             'total_price' : room.price * num_days}
             for room in available_rooms
         ]
@@ -50,10 +50,28 @@ def make_res(request):
 
 class HomeView(FormView):
     template_name = 'principal/home.html'  
-    form_class =  ReservationFormWOM
+    form_class =  ReservationForm
     success_url = 'principal/results.html'     
 
     def form_valid(self, form):
         form.save()
 
         return super().form_valid(form)
+    
+class CustomerView(FormView):
+    template_name = 'principal/detail_customer.html'  
+    form_class =  CustomerForm
+    success_url = 'principal/results.html'     
+
+    def form_valid(self, form):
+        form.save()
+
+        return super().form_valid(form)
+    
+class ReservationView(ListView):
+    model = Reservation
+    template_name = 'principal/reservation_list.html'
+    context_object_name = 'reservation_list'
+
+    def get_queryset(self):
+        return Reservation.objects.all()

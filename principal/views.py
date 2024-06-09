@@ -1,10 +1,15 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView,ListView,DetailView, UpdateView, FormView
+from django.views.generic import TemplateView,ListView,DetailView, UpdateView, FormView,View
+from django.contrib.auth import logout
 from .models import Room, Reservation, Customer
 from django.urls import reverse_lazy
 from datetime import datetime
 from . forms import ReservationForm, CustomerForm
 
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect("home")
 def home(request):
     if request.method == 'GET':
         return render(request,'principal/home.html')

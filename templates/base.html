@@ -21,11 +21,11 @@
           <li><a href="{% url 'home' %}" class="nav-link px-2 text-white">FAQ's</a></li>
         
         </ul>
+        {% if user.is_authenticated %}
         <div class="text-end">
-
         <a class="btn btn-outline-light me-2" href="#">{{user.username}}</a>
-        <a class="btn btn-warning" href="#">Logout</a>
-        
+        <a class="btn btn-warning" href="{% url 'logout' %}">Logout</a>
+        {% endif %}
         </div>
       </div>
     </div>
